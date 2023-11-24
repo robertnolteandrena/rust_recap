@@ -1,0 +1,12 @@
+error[E0597]: `a` does not live long enough
+ --> tests/will_not_compile/value_must_have_an_owner.rs:5:13
+  |
+4 |         let a = String::from("Hello World!");
+  |             - binding `a` declared here
+5 |         b = &a;
+  |             ^^ borrowed value does not live long enough
+...
+8 |     }
+  |     - `a` dropped here while still borrowed
+9 |     println!("b = {b}"); //The value is invalid
+  |                   --- borrow later used here

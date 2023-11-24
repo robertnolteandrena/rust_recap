@@ -1,0 +1,9 @@
+error[E0499]: cannot borrow `a` as mutable more than once at a time
+ --> tests/will_not_compile/multiple_mutable_borrow.rs:4:28
+  |
+3 |     let mutable_borrow_1 = &mut a;
+  |                            ------ first mutable borrow occurs here
+4 |     let mutable_borrow_2 = &mut a;
+  |                            ^^^^^^ second mutable borrow occurs here
+5 |     println!("{}, {}", mutable_borrow_1, mutable_borrow_2);
+  |                        ---------------- first borrow later used here

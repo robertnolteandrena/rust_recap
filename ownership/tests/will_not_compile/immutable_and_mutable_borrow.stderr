@@ -1,0 +1,9 @@
+error[E0502]: cannot borrow `a` as immutable because it is also borrowed as mutable
+ --> tests/will_not_compile/immutable_and_mutable_borrow.rs:4:28
+  |
+3 |     let mutable_borrow = &mut a;
+  |                          ------ mutable borrow occurs here
+4 |     let immutable_borrow = &a;
+  |                            ^^ immutable borrow occurs here
+5 |     println!("{} {}", mutable_borrow, immutable_borrow);
+  |                       -------------- mutable borrow later used here

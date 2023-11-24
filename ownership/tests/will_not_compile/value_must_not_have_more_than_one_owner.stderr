@@ -1,0 +1,23 @@
+warning: unused variable: `b`
+ --> tests/will_not_compile/value_must_not_have_more_than_one_owner.rs:3:9
+  |
+3 |     let b = a; //variable b now owns the value
+  |         ^ help: if this is intentional, prefix it with an underscore: `_b`
+  |
+  = note: `#[warn(unused_variables)]` on by default
+
+error[E0382]: borrow of moved value: `a`
+ --> tests/will_not_compile/value_must_not_have_more_than_one_owner.rs:4:19
+  |
+2 |     let a = String::from("Hello World!");
+  |         - move occurs because `a` has type `String`, which does not implement the `Copy` trait
+3 |     let b = a; //variable b now owns the value
+  |             - value moved here
+4 |     println!("a = {a}"); //a is no longer valid
+  |                   ^^^ value borrowed here after move
+  |
+  = note: this error originates in the macro `$crate::format_args_nl` which comes from the expansion of the macro `println` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider cloning the value if the performance cost is acceptable
+  |
+3 |     let b = a.clone(); //variable b now owns the value
+  |              ++++++++
