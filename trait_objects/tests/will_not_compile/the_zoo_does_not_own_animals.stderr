@@ -1,0 +1,12 @@
+error[E0597]: `goat` does not live long enough
+  --> tests/will_not_compile/the_zoo_does_not_own_animals.rs:8:26
+   |
+7  |         let goat = Goat;
+   |             ---- binding `goat` declared here
+8  |         zoo.animals.push(&goat);
+   |                          ^^^^^ borrowed value does not live long enough
+9  |     }
+   |     - `goat` dropped here while still borrowed
+10 |
+11 |     let zoo_name = zoo.name();
+   |                    --- borrow later used here

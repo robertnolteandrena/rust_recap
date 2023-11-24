@@ -3,6 +3,14 @@ name = "trait_objects"
 version = "0.0.0"
 edition = "2021"
 
+[lib]
+name = "trait_objects_lib"
+path = "src/lib.rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+[dev-dependencies]
+rand = "0.8.5"
+spectral = "0.6.0"
+trybuild = "1.0.85"

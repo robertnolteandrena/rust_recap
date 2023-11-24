@@ -1,14 +1,61 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+pub struct Goat;
+pub struct Sheep;
+
+pub trait HasName {
+    fn name(&self) -> String;
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+impl HasName for Goat {
+    fn name(&self) -> String {
+        "Goat".to_owned()
+    }
+}
+impl HasName for Sheep {
+    fn name(&self) -> String {
+        "Sheep".to_owned()
+    }
+}
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+pub struct Zoo<'a> {
+    pub animals: Vec<&'a dyn HasName>,
+}
+pub struct SmartZoo {
+    pub animals: Vec<Box<dyn HasName>>,
+}
+pub struct BoringZoo<T: HasName> {
+    pub animals: Vec<T>,
+}
+
+impl<'a> HasName for Zoo<'a> {
+    fn name(&self) -> String {
+        let animals = self
+            .animals
+            .iter()
+            .map(|animal| animal.name())
+            .collect::<Vec<String>>()
+            .join(" ");
+        ["Zoo of: ", &animals].concat()
+    }
+}
+impl HasName for SmartZoo {
+    fn name(&self) -> String {
+        let animals = self
+            .animals
+            .iter()
+            .map(|animal| animal.name())
+            .collect::<Vec<String>>()
+            .join(" ");
+        ["SmartZoo of: ", &animals].concat()
+    }
+}
+impl<T: HasName> HasName for BoringZoo<T> {
+    fn name(&self) -> String {
+        let animals = self
+            .animals
+            .iter()
+            .map(|animal| animal.name())
+            .collect::<Vec<String>>()
+            .join(" ");
+        ["BoringZoo of: ", &animals].concat()
     }
 }
