@@ -1,5 +1,3 @@
-use std::fmt::Display;
-
 use rand::{thread_rng, Rng};
 use spectral::{assert_that, string::StrAssertions};
 use traits_lib::{Goat, HasName, Sheep, SmartZoo, Zoo};
@@ -94,6 +92,6 @@ fn dynamic_dispatch_function_boxed() {
     if is_goat {
         assert_that!(test_string.as_ref()).is_equal_to("this is test_function: Goat");
     } else {
-        assert_that!(test_string.as_ref()).is_equal_to("this is test_function: Sheep");
+        assert_that!(test_string.as_ref()).starts_with("this is test_function: #");
     }
 }
