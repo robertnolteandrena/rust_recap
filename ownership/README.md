@@ -8,9 +8,16 @@ In der Datei `ownership/tests/compiler_ownership_rules.rs` wird getestet ob Prog
    - Dafür sollten allerdings die einzelnen Fehler von deiner IDE angezeigt werden.
    - Kommentiere die Zeile wieder.
 
-Nun ist es Zeit weitere Tests zu schreiben. Dafür muss die Datei in `ownership/tests/compiler_ownership_rules.rs` mit Pfad referenziert werden. Handelt es sich um ein Programm, dass nicht kompilieren darf, referenziere es in `t.compile_fail`. Wenn nun `cargo test` ausgeführt wird, wird eine Datei unter `ownership/tests/wip/<your_test>.stderr` angelegt, die den Compiler Output beinhaltet. Wenn dort deine erwartete Fehlermeldung ist, kannst du die Datei neben deinen test kopieren.
+Nun ist es Zeit weitere Tests zu schreiben.
+In der Datei `ownership/tests/compiler_ownership_rules.rs` existiert ein test `ownership_enforced_by_compiler()`.
+Dieser test ist recht speziell:
+Er testet **nicht ob** ein Program sich korrekt verhält, sondern **ob es kompiliert** und falls nicht: welche Fehlermeldung gibt der Compiler zurück?
 
-Um tests zu schreiben, die kompilieren, kannst du eine neue Datei anlegen: `ownership/tests/<my_test>.rs`
+Handelt es sich um ein Programm, dass nicht kompilieren darf, referenziere es in `t.compile_fail()`.
+Wenn nun `cargo test` ausgeführt wird, wird eine Datei unter `ownership/tests/wip/<your_test>.stderr` angelegt,
+die den Compiler Output beinhaltet. Wenn dort die erwartete Fehlermeldung ist, kannst du die Datei neben den test kopieren.
+
+Um das verhalten zu testen, kannst du eine neue Datei anlegen: `ownership/tests/<my_test>.rs`
 
 ```rust
 #[test]
@@ -27,5 +34,5 @@ Assertions können mit makros aus der Standardbibliothek geschrieben werden: htt
 cargo add --dev spectral
 ```
 
-Ein interessantes Gebiet, k\oennte zum beispiel sein, wie man die Borrowing Rules zur Laufzeit prüft und nicht zur Compilezeit: https://doc.rust-lang.org/std/cell/index.html
-oder das selbe f\uer die Ownership Rules: https://doc.rust-lang.org/std/rc/index.html
+3. Schreibe tests wie die Borrowing Rules zur Laufzeit anstatt der Compilezeit überprüft werden können: https://doc.rust-lang.org/std/cell/index.html
+4. Schreibe tests wie die Ownership Rules zur Laufzeit anstatt der Compilezeit überprüft werden können: https://doc.rust-lang.org/std/rc/index.html

@@ -36,7 +36,9 @@ fn test_integer_copy(){
 }
 ```
 
-Schreibe ein paar tests um dich davon zu überzeugen, dass structs, die [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html) implementieren nach dem Ownership wechsel noch valide sind. Die tests kannst du ausführen mit:
+Schreibe ein paar tests um dich davon zu überzeugen, dass structs,
+die [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html) implementieren nach dem Ownership Wechsel noch valide sind.
+Die tests kannst du ausführen mit:
 
 ```bash
 cargo test -- --show-output

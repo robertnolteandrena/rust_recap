@@ -16,7 +16,7 @@ pub struct LibraryGeneric<T: HasDescription> {
 }
 ```
 
-Schreibe für beide structs methoden um ein element hinzuzufügen, und um die Beschreibung aller Elemente zu printen.
+Schreibe für beide structs eine methode um ein element hinzuzufügen.
 
 > Um in einem `impl` Generics zu verwenden kannst du die Schreibweise `impl<T: HasDescription> LibraryGeneric<T> { }` verwenden.
 
