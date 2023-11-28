@@ -14,6 +14,7 @@ fn copy_point2d() {
     println!("a = {:?}, b = {:?}", a, b);
 }
 #[test]
+#[allow(unused_variables)]
 fn no_copy_point_variable_d() {
     let a = PointVariableD {
         components: vec![1f32, 2f32],
