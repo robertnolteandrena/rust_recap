@@ -1,5 +1,5 @@
-pub struct Goat;
 pub struct Sheep;
+pub struct Goat;
 
 pub trait HasName {
     fn name(&self) -> String;
@@ -57,5 +57,11 @@ impl<T: HasName> HasName for BoringZoo<T> {
             .collect::<Vec<String>>()
             .join(" ");
         ["BoringZoo of: ", &animals].concat()
+    }
+}
+
+impl HasName for String {
+    fn name(&self) -> String {
+        self.clone()
     }
 }

@@ -1,2 +1,2 @@
 [workspace]
-members = ["trait_objects", "ownership"]
+members = ["traits", "ownership", "clone_copy"]

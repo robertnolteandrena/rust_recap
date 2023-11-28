@@ -1,5 +1,5 @@
 use spectral::assert_that;
-use trait_objects_lib::{Goat, HasName, Zoo};
+use traits_lib::{Goat, HasName, Zoo};
 
 fn does_the_zoo_own_animals_quesionmark() {
     let mut zoo = Zoo { animals: vec![] };

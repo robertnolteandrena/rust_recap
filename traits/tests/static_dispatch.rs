@@ -1,5 +1,5 @@
 use spectral::assert_that;
-use trait_objects_lib::{BoringZoo, Goat, HasName};
+use traits_lib::{BoringZoo, Goat, HasName};
 
 #[test]
 fn test_name_of_boring_zoo() {

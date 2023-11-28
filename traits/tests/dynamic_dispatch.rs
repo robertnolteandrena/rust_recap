@@ -1,6 +1,8 @@
+use std::fmt::Display;
+
 use rand::{thread_rng, Rng};
-use spectral::assert_that;
-use trait_objects_lib::{Goat, HasName, Sheep, SmartZoo, Zoo};
+use spectral::{assert_that, string::StrAssertions};
+use traits_lib::{Goat, HasName, Sheep, SmartZoo, Zoo};
 
 #[test]
 fn test_name_of_zoo() {
@@ -43,7 +45,8 @@ fn does_the_zoo_own_animals_quesionmark() {
     //to answer the question: Does the zoo own animals ? No!
 
     let t = trybuild::TestCases::new();
-    t.compile_fail("tests/will_not_compile/the_zoo_does_not_own_animals.rs")
+    t.compile_fail("tests/will_not_compile/the_zoo_does_not_own_animals.rs");
+    t.compile_fail("tests/will_not_compile/function_parameters_must_be_sized.rs");
 }
 
 #[test]
@@ -60,4 +63,37 @@ fn does_the_smart_zoo_own_animals_quesionmark() {
     //The smart_zoo owns a Box smart pointer
     //That Smart Pointer owns the animal which is allocated on the heap
     //So yes the smart zoo owns its animals transitively
+}
+fn test_function(t: &dyn HasName) -> String {
+    format!("this is test_function: {}", t.name())
+}
+
+#[test]
+fn dynamic_dispatch_function() {
+    let mut rng = thread_rng();
+    let is_goat = rng.gen();
+    let name_haver: &dyn HasName = if is_goat { &Goat } else { &Sheep };
+    let test_string = test_function(name_haver);
+    if is_goat {
+        assert_that!(test_string.as_ref()).is_equal_to("this is test_function: Goat");
+    } else {
+        assert_that!(test_string.as_ref()).is_equal_to("this is test_function: Sheep");
+    }
+}
+#[test]
+fn dynamic_dispatch_function_boxed() {
+    let mut rng = thread_rng();
+    let is_goat = rng.gen();
+    let name_haver: Box<dyn HasName> = if is_goat {
+        Box::new(Goat)
+    } else {
+        let number = rng.gen_range(0..1000);
+        Box::new(format!("#{}", number))
+    };
+    let test_string = test_function(name_haver.as_ref());
+    if is_goat {
+        assert_that!(test_string.as_ref()).is_equal_to("this is test_function: Goat");
+    } else {
+        assert_that!(test_string.as_ref()).is_equal_to("this is test_function: Sheep");
+    }
 }

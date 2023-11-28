@@ -1,5 +1,5 @@
 use spectral::assert_that;
-use trait_objects_lib::{BoringZoo, Goat, HasName, Sheep};
+use traits_lib::{BoringZoo, Goat, HasName, Sheep};
 
 fn boring_zoo_can_only_hold_one_type_of_animal() {
     let goat = Goat;
