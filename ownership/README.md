@@ -21,8 +21,11 @@ fn my_test(){
 }
 ```
 
-Assertions können mit makros aus der Standardbibliothek geschrieben werden: https://doc.rust-lang.org/std/macro.assert.html#examples, aber auch mit dedizierten Crates, wie [spectral](https://doc.rust-lang.org/std/macro.assert.html#examples)
+Assertions können mit makros aus der Standardbibliothek geschrieben werden: https://doc.rust-lang.org/std/macro.assert.html#examples, aber auch mit dedizierten Crates, wie [spectral](https://crates.io/crates/spectral)
 
 ```bash
 cargo add --dev spectral
 ```
+
+Ein interessantes Gebiet, k\oennte zum beispiel sein, wie man die Borrowing Rules zur Laufzeit prüft und nicht zur Compilezeit: https://doc.rust-lang.org/std/cell/index.html
+oder das selbe f\uer die Ownership Rules: https://doc.rust-lang.org/std/rc/index.html
