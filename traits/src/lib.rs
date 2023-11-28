@@ -1,67 +1,48 @@
-pub struct Sheep;
-pub struct Goat;
-
-pub trait HasName {
-    fn name(&self) -> String;
+pub trait HasDescription {
+    fn description(&self) -> String;
 }
 
-impl HasName for Goat {
-    fn name(&self) -> String {
-        "Goat".to_owned()
-    }
+pub struct Task {
+    pub urgency: u8,
+    pub name: String,
 }
-impl HasName for Sheep {
-    fn name(&self) -> String {
-        "Sheep".to_owned()
+
+impl HasDescription for String {
+    fn description(&self) -> String {
+        format!("Description: {}", self)
     }
 }
 
-pub struct Zoo<'a> {
-    pub animals: Vec<&'a dyn HasName>,
+impl HasDescription for Task {
+    fn description(&self) -> String {
+        format!("Task {} has urgency {}.", self.name, self.urgency)
+    }
 }
-pub struct SmartZoo {
-    pub animals: Vec<Box<dyn HasName>>,
+pub struct LibraryTraitObject {
+    pub described: Vec<Box<dyn HasDescription>>,
 }
-pub struct BoringZoo<T: HasName> {
-    pub animals: Vec<T>,
+pub struct LibraryGeneric<T: HasDescription> {
+    pub described: Vec<T>,
 }
 
-impl<'a> HasName for Zoo<'a> {
-    fn name(&self) -> String {
-        let animals = self
-            .animals
-            .iter()
-            .map(|animal| animal.name())
-            .collect::<Vec<String>>()
-            .join(" ");
-        ["Zoo of: ", &animals].concat()
+impl<T: HasDescription> LibraryGeneric<T> {
+    pub fn add_element(&mut self, t: T) {
+        self.described.push(t);
     }
-}
-impl HasName for SmartZoo {
-    fn name(&self) -> String {
-        let animals = self
-            .animals
-            .iter()
-            .map(|animal| animal.name())
-            .collect::<Vec<String>>()
-            .join(" ");
-        ["SmartZoo of: ", &animals].concat()
-    }
-}
-impl<T: HasName> HasName for BoringZoo<T> {
-    fn name(&self) -> String {
-        let animals = self
-            .animals
-            .iter()
-            .map(|animal| animal.name())
-            .collect::<Vec<String>>()
-            .join(" ");
-        ["BoringZoo of: ", &animals].concat()
+    pub fn describe_all(&self) {
+        for element in &self.described {
+            println!("{}", element.description());
+        }
     }
 }
 
-impl HasName for String {
-    fn name(&self) -> String {
-        self.clone()
+impl LibraryTraitObject {
+    pub fn add_element(&mut self, t: Box<dyn HasDescription>) {
+        self.described.push(t);
+    }
+    pub fn describe_all(&self) {
+        for element in &self.described {
+            println!("{}", element.description());
+        }
     }
 }

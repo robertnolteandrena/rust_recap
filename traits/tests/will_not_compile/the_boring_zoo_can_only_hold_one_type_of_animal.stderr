@@ -1,5 +1,0 @@
-error[E0308]: mismatched types
- --> tests/will_not_compile/the_boring_zoo_can_only_hold_one_type_of_animal.rs:8:29
-  |
-8 |         animals: vec![goat, sheep],
-  |                             ^^^^^ expected `Goat`, found `Sheep`
