@@ -247,6 +247,9 @@ dependencies = [
 [[package]]
 name = "string_str_slice"
 version = "0.0.0"
+dependencies = [
+ "spectral",
+]
 
 [[package]]
 name = "syn"
