@@ -15,3 +15,16 @@ fn taking_a_slice_from_a_string() {
     assert_that!(hello).is_equal_to("hello");
     assert_that!(world).is_equal_to("world");
 }
+#[test]
+fn slicing_utf8() {
+    let hello_world = "Привіт світ";
+    let str_slice: &str = &hello_world[0..4];
+    assert_that!(str_slice).is_equal_to("Пр")
+}
+
+#[test]
+#[should_panic]
+fn cannot_slice_within_character() {
+    let hello_world = "Привіт світ";
+    let _str_slice: &str = &hello_world[0..3];
+}

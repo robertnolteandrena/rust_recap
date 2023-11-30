@@ -1,6 +1,6 @@
 # Traits
 
-Willkommen zu dem kleinen Kapitel über traits. Wir gucken uns kurz an wie man ein simples trait definiert und implementiert. Danach wenden wir uns der Fragestellung zu, wie wir mit traits Polymorphismus verwenden.
+Willkommen zu einem kleinen Kapitel über traits. Wir gucken uns kurz an wie man ein simples trait definiert und implementiert. Danach wenden wir uns der Fragestellung zu, wie wir mit traits Polymorphismus verwenden.
 
 1. In der Datei `traits/src/lib.rs` findest du das Trait `HasDescription`.
    Implementiere dieses Trait für ein von dir definiertes `struct`, und für ein externes `struct`: Zum Beispiel `String`
