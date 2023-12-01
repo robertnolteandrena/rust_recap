@@ -7,12 +7,14 @@ fn test_integer_copy() {
     let y = x;
     println!("x = {}, y = {}", x, y);
 }
+
 #[test]
 fn copy_point2d() {
     let a = Point2D { x: 1f32, y: 10f32 };
     let b = a;
     println!("a = {:?}, b = {:?}", a, b);
 }
+
 #[test]
 #[allow(unused_variables)]
 fn no_copy_point_variable_d() {
@@ -23,6 +25,7 @@ fn no_copy_point_variable_d() {
     //If this line is uncommented the tests will not compile
     //println!("a = {:?}, b = {:?}", a, b);
 }
+
 #[test]
 fn clone_point_variable_d() {
     let a = PointVariableD {
