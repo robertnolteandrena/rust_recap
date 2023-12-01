@@ -1,3 +1,4 @@
+#![allow(unused_imports)]
 use spectral::option::OptionAssertions;
 use std::rc::Rc;
 
